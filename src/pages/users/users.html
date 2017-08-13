@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title >
+	    <ion-grid>
+		  	<ion-row>
+		  	<ion-col col-2>
+		  		<ion-icon ios="ios-menu" md="md-menu" style="text-align:left" menuToggle ></ion-icon>
+		  		<!--<ion-icon ios="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>-->
+	      	</ion-col>
+	      	<ion-col col-8 style="text-align:center">
+	  			<span item-align="center">Users</span>
+	  		</ion-col>
+            <ion-col col-2>
+                <ion-buttons end>
+                    <ion-spinner color="light" *ngIf="!(users | async)"></ion-spinner>
+                </ion-buttons>
+                <!--<ion-icon ios="ios-people" md="md-people" style="text-align:right" menuToggle end></ion-icon>-->
+		  		
+		  		<!--<ion-icon ios="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>-->
+	      	</ion-col> 
+
+	  		</ion-row>
+		</ion-grid>
+	</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar (ionInput)="findUsers($event)" placeholder="Enter User name"></ion-searchbar>
+     <ion-list [hidden]="!search">
+        <ion-item *ngFor="let user of users | async">{{user.fname}} {{user.lname}}</ion-item>
+     </ion-list>
+    <ion-list>
+      <span *ngFor="let user of users | async">
+        <a ion-item (click)="openChat(user.fname,user.lname,user.email,user.picture,user.$key)" *ngIf="user.$key !== uid">
+             <ion-avatar item-left>
+                <img *ngIf="!user.picture" src="assets/img/image.jpg">
+                <img *ngIf="user.picture" src="{{user.picture}}">
+             </ion-avatar>
+             <h2>{{user.fname}} {{user.lname}} </h2>
+             <h3 style="color:darkgray">{{user.email}}</h3>
+        </a>
+      </span>
+    </ion-list>
+</ion-content>

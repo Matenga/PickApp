@@ -1,0 +1,98 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Account</ion-title>   
+        <button menuToggle><ion-icon name="contacts"></ion-icon></button>
+    </ion-navbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title >
+	    <ion-grid>
+		  	<ion-row>
+		  	<ion-col col-2>
+		  		<ion-icon ios="ios-menu" md="md-menu" style="text-align:left" menuToggle ></ion-icon>
+		  		<!--<ion-icon ios="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>-->
+	      	</ion-col>
+	      	<ion-col col-8 style="text-align:center">
+	  			<span item-align="center">Account</span>
+	  		</ion-col>
+            <ion-col col-2 style="text-align: end;">
+                  <ion-icon ios="ios-cog" md="md-cog" ></ion-icon>
+	      	</ion-col> 
+
+	  		</ion-row>
+		</ion-grid>
+	</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-row>
+                <ion-col width-60>
+                    <img *ngIf="!user.picture" src="assets/img/image.jpg"/>
+                    <img *ngIf="user.picture" src="{{user.picture}}"/>
+                </ion-col>
+
+                <ion-col width-60 style="text-align:center;"><br>
+                    <h2 style="font-size:20px;">{{user.fname}} {{user.lname}}</h2>
+                    <h3 style="color:darkgray">{{user.phonenumber}}</h3>
+                    <h3 style="color:darkgray">{{user.email}}</h3><br>
+                </ion-col>
+                
+            </ion-row>
+
+            <ion-row>
+                <ion-col width-60>
+                <button style="background-color: white !important; color:#008287; border:2px solid #008287; width: 100%;" (click)="updatePicture()">
+                 <h4><ion-icon name="ios-camera" style="font-size:15px;"></ion-icon> Change Picture</h4>
+                </button>
+                 </ion-col> 
+
+                
+                 <ion-col width-60 style="text-align:right;">
+                      <button style="background-color: white !important; color:#008287; border:2px solid #008287; width: 100%;" (click)="editlname()">
+                   <h3><ion-icon name="ios-create" style="font-size:15px;"></ion-icon> Edit Profile</h3>
+                   </button>
+                 </ion-col>
+            </ion-row>
+            
+        </ion-item>
+        
+        <!--<ion-card>
+            <img *ngIf="!user.picture" src="assets/img/image.jpg"/>
+            <img *ngIf="user.picture" src="{{user.picture}}"/>
+        </ion-card>-->
+        <!--<ion-item>
+            <button ion-button full (click)="updatePicture()">Change Picture</button>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col width-60 start>
+                    <button ion-button clear favorite icon-left (click)="editfname()">{{user.fname}}></button>
+                </ion-col>
+
+                <ion-col width-60>
+                    <ion-icon name="ios-create" end></ion-icon> Edit
+                </ion-col>
+
+            </ion-row>
+           
+        </ion-item>-->
+
+        <ion-fab right bottom>
+            <button ion-fab color="primary"><ion-icon name="logo-instagram"></ion-icon></button>
+            <ion-fab-list side="left">
+            <button ion-fab color="primary"><ion-icon name="camera"></ion-icon></button>
+            <button ion-fab color="primary"><ion-icon name="image"></ion-icon></button>
+            </ion-fab-list>
+        </ion-fab>
+        
+        
+        <a ion-item primary (click)="logout()">
+            <ion-icon name="log-out"></ion-icon> Logout
+        </a>
+    </ion-list>
+</ion-content>

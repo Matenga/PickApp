@@ -1,0 +1,121 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <!--<ion-title>{{(chat.info | async).fname}} {{(chat.info | async).lname}}</ion-title>-->
+         <ion-title>{{firstname}}'s Profile</ion-title>
+     <!-- <ion-buttons end>
+            <ion-spinner color="light" *ngIf="!(users | async)"></ion-spinner>
+        </ion-buttons>-->
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    
+  <ion-list>
+     
+
+        <ion-item>
+            <ion-row>
+                <ion-col width-60>
+                    <img class="round img-thumbnail" *ngIf="!picture" src="assets/img/image.jpg"/>
+                    <img class="round img-thumbnail" *ngIf="picture" src="{{picture}}"/>
+                </ion-col>
+
+                <ion-col width-60 style="text-align:left;">
+                    <h2 style="font-size:20px;">{{firstname}} {{lastname}}</h2>
+                    <h3 style="color:darkgray">{{phonenumber}}</h3>
+                    <h3 style="color:darkgray">{{info}}</h3><br>
+
+                    <ion-icon ios="ios-heart" md="md-heart"></ion-icon> 13k ratings
+                </ion-col>
+                
+            </ion-row>            
+        </ion-item>
+
+        <div padding>
+  <ion-segment [(ngModel)]="pet">
+    <ion-segment-button value="kittens">
+      <ion-icon ios="ios-camera" md="md-camera" style="font-size:13px;"></ion-icon> Photos
+
+    </ion-segment-button>
+    <ion-segment-button value="about">
+      About
+    </ion-segment-button>
+
+    <ion-segment-button value="call">
+      Call
+    </ion-segment-button>
+
+    <ion-segment-button value="puppies">
+        <ion-icon ios="ios-chatbubbles" md="md-chatbubbles" style="font-size:13px;"></ion-icon> Chat
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+<div [ngSwitch]="pet">
+  <ion-list *ngSwitchCase="'puppies'">
+    <ion-item>
+      <button ion-button block (click)="openchatview(key)">Start Chat</button> 
+      
+    </ion-item>
+    
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'about'">
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="img/thumbnail-kitten-1.jpg">
+      </ion-thumbnail>
+      
+    </ion-item>
+    ...
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'kittens'">
+    <ion-item>
+        <ion-row>
+            <ion-col width-30>
+      <ion-thumbnail item-start>
+        <img src="assets/img/image.jpg">
+      </ion-thumbnail>
+            </ion-col>
+
+            <ion-col width-30>
+      <ion-thumbnail item-start>
+        <img src="assets/img/image.jpg">
+      </ion-thumbnail>
+            </ion-col>
+
+            <ion-col width-30>
+      <ion-thumbnail item-start>
+        <img src="assets/img/image.jpg">
+      </ion-thumbnail>
+            </ion-col>
+
+            <ion-col width-30>
+      <ion-thumbnail item-start>
+        <img src="assets/img/image.jpg">
+      </ion-thumbnail>
+            </ion-col>
+        </ion-row>
+
+         
+    </ion-item>
+   
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'call'">
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/img/image.jpg">
+      </ion-thumbnail>
+      <h2>Luna</h2>
+    </ion-item>
+    ...
+  </ion-list>
+</div>
+     
+    </ion-list>
+
+         
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <span item-align="center" style="text-align:center;">Contacts</span>
+    </ion-title>
+    <ion-buttons end>
+        <button *ngFor = "let Addcontact of Addcontacts" (click) ="openPage(Addcontact.page)">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+  <ion-content padding>
+    <ion-searchbar (ionInput)="findContact($event)" placeholder="Enter display name"></ion-searchbar>
+     <ion-list [hidden]="!search">
+        <ion-item *ngFor="let item of contactsfound">{{item.displayName}}</ion-item>
+    <ion-list-header>Contacts</ion-list-header>
+      <span *ngFor="let contact of contactList" >
+      <ion-item *ngIf="contact.displayName">
+         
+          <!--  <img src="{{contact.photos[0].value }}" > -->
+            {{contact.displayName}}  
+          <p>{{contact.phoneNumbers[0].value}}</p>
+      </ion-item>
+    </span>
+  </ion-list> 
+</ion-content>

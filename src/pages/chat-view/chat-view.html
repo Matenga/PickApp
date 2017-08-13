@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Chat</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="sendPicture()"> <ion-icon ios="ios-call" md="md-call" style="font-size:25px;"></ion-icon> </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="chat-view" id="chat-view">  
+  <div class="messages">
+      <div class="message" *ngFor="let chat of chats | async" [ngClass]="{'me': uid === chat.from}">
+            <span *ngIf="chat.message">{{chat.message}}</span>
+            <img *ngIf="chat.picture" src="{{chat.picture}}" class="picture">
+      </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col width-10 style="display:flex;">
+          <button ion-button full clear favorite (click)="sendPicture()"> <ion-icon ios="ios-attach" md="md-attach" start class="attachment"></ion-icon></button>
+          <ion-spinner *ngIf="!(chats)"></ion-spinner>
+      </ion-col>
+      
+      <ion-col width-70 [hidden]="!chats">
+          <ion-input type="text"  placeholder="Enter Message"
+              [(ngModel)]="message">
+          </ion-input>
+      </ion-col>
+      <ion-col width-20 [hidden]="!chats">
+          
+          <!--<ion-icon ios="ios-send" md="md-send" start class="attachment" (click)="sendMessage()"></ion-icon>-->
+          <button ion-button full clear favorite (click)="sendMessage()"><ion-icon name="send" class="attachment"></ion-icon></button>
+      </ion-col>
+    </ion-row>    
+  </ion-toolbar>
+</ion-footer>
